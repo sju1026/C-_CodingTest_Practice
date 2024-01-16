@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using static System.Console;
 
 namespace CodingTest
@@ -7,11 +8,12 @@ namespace CodingTest
     {
         static void Main(string[] args)
         {
-
+            
         }
     }
 }
 
+#region 기존문제모음
 #region 사칙연산
 /*
 // 1000
@@ -564,4 +566,576 @@ for (int i = 0; i < n; i++)
 WriteLine("{0:0.00####}", sum / n);
 =============================================
  */
+#endregion
+
+#region 문자열
+/*
+// 27866
+using System.Linq;
+using static System.Console;
+
+string input = ReadLine();
+string input_i = ReadLine();
+
+int i = int.Parse(input_i);
+
+WriteLine(input.ElementAt(i - 1));
+===================================================
+// 2743
+string input = ReadLine();
+WriteLine(input.Length);
+===================================================
+// 9086
+string stringNumber = ReadLine();
+int intNum = System.Convert.ToInt32(stringNumber);
+
+string[] result = new string[intNum];
+for (int i = 0; i < intNum; i++)
+{
+    string testCase = ReadLine();
+    char[] array = testCase.ToCharArray();
+    result[i] = array[0].ToString() + array[array.Length - 1].ToString();
+}
+
+foreach (string c in result)
+{
+    WriteLine(c);
+}
+===================================================
+// 11654
+char a = Convert.ToChar(ReadLine());
+int x = Convert.ToInt32(a);
+
+WriteLine(x);
+===================================================
+// 11720
+int n = int.Parse(ReadLine());
+string numbers = ReadLine();
+int sum = 0;
+for (int i = 0; i < numbers.Length; i++)
+{
+    sum += int.Parse(numbers[i].ToString());
+}
+WriteLine(sum);
+===================================================
+// 10809
+string s = ReadLine();
+for (int i = 97; i < 123; i++)
+{
+    if (s.Contains(Convert.ToChar(i)))
+    {
+        Write(s.IndexOf(Convert.ToChar(i)));
+        Write(" ");
+    }
+    else Write("-1 ");
+}
+===================================================
+// 2675
+int testCount = int.Parse(ReadLine());
+StringBuilder output = new StringBuilder();
+
+for (int i = 0; i < testCount; i++)
+{
+    string[] testCases = ReadLine().Split(" ");
+    int spellRepeatCount = int.Parse(testCases[0]);
+    string testString = testCases[1];
+
+    for (int j = 0; j < testString.Length; j++)
+    {
+        output.Append(testString[j], spellRepeatCount);
+    }
+    output.Append("\n");
+}
+WriteLine(output.ToString());
+===================================================
+// 1152
+int answer = 0;
+string s = ReadLine().Trim();
+
+for (int i = 0; i < s.Length; i++)
+{
+    if (s[i] == ' ') answer++;
+}
+if (s.Length == 0) WriteLine(0);
+else WriteLine(answer + 1);
+===================================================
+// 2908
+string[] s = ReadLine().Split();
+int[] a = Array.ConvertAll(s, int.Parse);
+
+int n1 = 0;
+int n2 = 0;
+
+while (a[0] > 0)
+{
+    n1 += a[0] % 10;
+    n1 *= 10;
+    a[0] /= 10;
+}
+while (a[1] > 0)
+{
+    n2 += a[1] % 10;
+    n2 *= 10;
+    a[1] /= 10;
+}
+WriteLine(n1 >= n2 ? n1 / 10 : n2 / 10);
+===================================================
+// 5622
+int sum = 0;
+char[] ch = ReadLine().ToUpper().ToCharArray();
+
+for (int i = 0; i < ch.Length; i++)
+{
+    if ('A' <= ch[i] && ch[i] <= 'C') sum += 3;
+    else if ('D' <= ch[i] && ch[i] <= 'F') sum += 4;
+    else if ('G' <= ch[i] && ch[i] <= 'I') sum += 5;
+    else if ('J' <= ch[i] && ch[i] <= 'L') sum += 6;
+    else if ('M' <= ch[i] && ch[i] <= 'O') sum += 7;
+    else if ('P' <= ch[i] && ch[i] <= 'S') sum += 8;
+    else if ('T' <= ch[i] && ch[i] <= 'V') sum += 9;
+    else if ('W' <= ch[i] && ch[i] <= 'Z') sum += 10;
+}
+WriteLine(sum);
+===================================================
+// 11718
+while (true)
+{
+    string input = ReadLine();
+    WriteLine(input);
+
+    if (String.IsNullOrEmpty(input)) return;
+}
+===================================================
+*/
+
+#endregion
+
+#region 심화 1단계
+/*
+// 25083
+WriteLine("         ,r'\"7");
+WriteLine("r`-_   ,'  ,/");
+WriteLine(" \\. \". L_r'");
+WriteLine("   `~\\/");
+WriteLine("      |");
+WriteLine("      |");
+===========================================
+// 3003
+string[] input = ReadLine().Split();
+int[] s = { 1, 1, 2, 2, 2, 8 };
+for (int i = 0; i < input.Length; i++)
+{
+    s[i] -= int.Parse(input[i]);
+}
+foreach (int j in s)
+{
+    Write(j.ToString() + " ");
+}
+===========================================
+// 2444
+int n = int.Parse(ReadLine());
+for (int i = 1; i <= n; i++)
+{
+    for (int j = 0; j < n - i; j++) Write(" ");
+    for (int j = 0; j < (i - 1) * 2 + 1; j++) Write("*");
+    WriteLine();
+}
+for (int i = n - 1; i >= 1; i--)
+{
+    for (int j = 0; j < n - i; j++) Write(" ");
+    for (int j = 0; j < (i - 1) * 2 + 1; j++) Write("*");
+    WriteLine();
+}
+===========================================
+// 10988
+string input = ReadLine();
+int answer = 1;
+char[] string_1 = new char[input.Length];
+char[] string_2 = new char[input.Length];
+for (int i = 0; i < input.Length; i++)
+{
+    string_1[i] = input[i];
+}
+int count = 0;
+for (int i = input.Length; i > 0; i--)
+{
+    string_2[count] = input[i - 1];
+    count++;
+}
+
+for (int i = 0; i < input.Length; i++)
+{
+    if (string_1[i] != string_2[i])
+    {
+        answer = 0;
+        break;
+    }
+}
+WriteLine(answer);
+===========================================
+// 1157
+string inputStr = ReadLine().ToUpper();
+int[] intArray = new int[91];
+
+for (int i = 0; i < inputStr.Length; i++) intArray[inputStr[i]]++;
+
+int max = 0;
+char c = '?';
+for (int i = 'A'; i <= 'Z'; i++)
+{
+    if (intArray[i] > max)
+    {
+        max = intArray[i];
+        c = (char)i;
+    }
+    else if (intArray[i] == max) c = '?';
+}
+WriteLine(c);
+===========================================
+// 2941
+string word = ReadLine();
+
+word = word.Replace("c=", "1");
+word = word.Replace("c-", "1");
+word = word.Replace("dz=", "1");
+word = word.Replace("d-", "1");
+word = word.Replace("lj", "1");
+word = word.Replace("nj", "1");
+word = word.Replace("s=", "1");
+word = word.Replace("z=", "1");
+
+WriteLine(word.Count());
+===========================================
+// 1316
+static void Main(string[] args)
+{
+    int n = int.Parse(ReadLine());
+    string[] words = new string[n];
+    int count = 0;
+
+    for (int i = 0; i < n; i++) words[i] = ReadLine();
+
+    for (int i = 0; i < n; i++)
+    {
+        if (checkWord(words[i])) count++;
+    }
+    WriteLine(count);
+}
+
+static bool checkWord(string word)
+{
+    for (int i = 0; i < word.Length; i++)
+    {
+        for (int j = 0; j < word.Length; j++)
+        {
+            if (j - i > 1)
+            {
+                if (word[i] == word[j]) return false;
+            }
+            if (word[i] == word[j]) i += j - i;
+        }
+    }
+    return true;
+}
+===========================================
+// 25206
+double total = 0;
+double score_total = 0;
+for (int i = 0; i < 20; i++)
+{
+    string subject = ReadLine();
+    string[] token = subject.Split();
+    string name = token[0];
+    double credit = double.Parse(token[1]);
+    string score = token[2];
+
+    if (score == "A+")
+    {
+        total += credit;
+        score_total += (4.5 * credit);
+    }
+    else if (score == "A0")
+    {
+        total += credit;
+        score_total += (4.0 * credit);
+    }
+    else if (score == "B+")
+    {
+        total += credit;
+        score_total += (3.5 * credit);
+    }
+    else if (score == "B0")
+    {
+        total += credit;
+        score_total += (3.0 * credit);
+    }
+    else if (score == "C+")
+    {
+        total += credit;
+        score_total += (2.5 * credit);
+    }
+    else if (score == "C0")
+    {
+        total += credit;
+        score_total += (2.0 * credit);
+    }
+    else if (score == "D+")
+    {
+        total += credit;
+        score_total += (1.5 * credit);
+    }
+    else if (score == "D0")
+    {
+        total += credit;
+        score_total += (1.0 * credit);
+    }
+    else if (score == "F")
+    {
+        total += credit;
+        score_total += (0.0 * credit);
+    }
+}
+WriteLine(Math.Round(score_total / total, 6));
+===========================================
+*/
+#endregion
+
+#region 2차원 배열
+/*
+// 2738
+string stringN = ReadLine();
+string[] stringArray = stringN.Split(' ', StringSplitOptions.None);
+int Y = Convert.ToInt32(stringArray[0]);
+int X = Convert.ToInt32(stringArray[1]);
+
+int[,] matrixA = new int[Y, X];
+for (int i = 0; i < Y; i++)
+{
+    string s = ReadLine();
+    string[] sArray = s.Split(' ', StringSplitOptions.None);
+    for (int j = 0; j < X; j++) matrixA[i, j] = Convert.ToInt32(sArray[j]);
+}
+
+int[,] matrixB = new int[Y, X];
+for (int i = 0; i < Y; i++)
+{
+    string s = ReadLine();
+    string[] sArray = s.Split(' ', StringSplitOptions.None);
+    for (int j = 0; j < X; j++) matrixB[i, j] = Convert.ToInt32(sArray[j]);
+}
+
+int[,] matrixR = new int[Y, X];
+for (int i = 0; i < Y; i++)
+{
+    for (int j = 0; j < X; j++)
+    {
+        matrixR[i, j] = matrixA[i, j] + matrixB[i, j];
+        Write(matrixR[i, j] + " ");
+    }
+    WriteLine();
+}
+====================================
+// 2566
+int max = 0;
+int[,] array = new int[9, 9];
+int max_i = 0;
+int max_j = 0;
+for (int i = 0; i < 9; i++)
+{
+    string row = ReadLine();
+    string[] token = row.Split();
+    for (int j = 0; j < 9; j++)
+    {
+        array[i, j] = int.Parse(token[j]);
+        if(max < array[i, j])
+        {
+            max_i = i;
+            max_j = j;
+            max = array[i, j];
+        }
+    }
+}
+WriteLine(max);
+WriteLine($"{max_i + 1} {max_j + 1}");
+====================================
+// 10798
+string[,] array = new string[5, 15];
+
+for (int i = 0; i < 5; i++)
+{
+    for (int j = 0; j < 15; j++)
+    {
+        array[i, j] = "+";
+    }
+}
+
+for (int i = 0; i < 5; i++)
+{
+    string r = ReadLine();
+    string[] token = r.Split();
+    for (int j = 0; j < r.Length; j++) array[i, j] = r[j].ToString();
+}
+
+for (int i = 0; i < 15; i++)
+{
+    for (int j = 0; j < 5; j++)
+    {
+        if (array[j, i] == "+") continue;
+        else Write(array[j, i]);
+    }
+}
+====================================
+// 2563
+int[,] array = new int[100, 100];
+
+int answer = 0;
+int n = int.Parse(ReadLine());
+for (int i = 0; i < n; i++)
+{
+    string input = ReadLine();
+    string[] token = input.Split();
+    int x = int.Parse(token[0]);
+    int y = int.Parse(token[1]);
+
+    for (int j = x; j < x + 10; j++)
+    {
+        for (int w = y; w < y + 10; w++)
+        {
+            if (array[j , w] == 0)
+            {
+                array[j, w] = 1;
+                answer++;
+            }
+        }
+    }
+}
+WriteLine(answer);
+====================================
+ */
+#endregion
+
+#region 일반 수학 1단계
+/*
+// 2745
+string input = ReadLine();
+string[] token = input.Split();
+string n = token[0];
+int m = int.Parse(token[1]);
+
+Dictionary<string, int> dic = new Dictionary<string, int>();
+
+for (int i = 0; i <= 35; i++)
+{
+    if (i < 10) dic.Add(i.ToString(), i);
+    else dic.Add(((char)(i + 55)).ToString(), i);
+}
+
+int count = 0;
+double total = 0;
+for (int i = n.Length - 1; i>= 0; i--)
+{
+    total += ((double)Math.Pow(m, count) * dic[n[i].ToString()]);
+    count++;
+}
+WriteLine(total);
+=====================================
+// 11005
+string[] input = ReadLine().Split();
+int n = int.Parse(input[0]);
+int b = int.Parse(input[1]);
+ArrayList arr = new ArrayList();
+while (n > 0)
+{
+    int temp = n % b;
+    n = n / b;
+    if (temp >= 10)
+    {
+        temp += 55;
+        arr.Add((char)temp);
+    }
+    else arr.Add(temp);
+}
+arr.Reverse();
+foreach (var a in arr)
+{
+    Write(a);
+}
+=====================================
+// 2720
+int t = int.Parse(ReadLine());
+
+for (int i = 0; i < t; i++)
+{
+    int money = int.Parse(ReadLine());
+    int quarter = money / 25;
+    money %= 25;
+    int dime = money / 10;
+    money %= 10;
+    int nickel = money / 5;
+    money %= 5;
+    int penny = money;
+
+    WriteLine("{0} {1} {2} {3}", quarter, dime, nickel, penny);
+}
+=====================================
+// 2903
+double n = double.Parse(ReadLine());
+double square = 1 * Math.Pow(2, n);
+double dot = square + 1;
+double result = Math.Pow(dot, 2);
+
+WriteLine(result);
+=====================================
+// 2292
+double n = double.Parse(ReadLine());
+if (n == 1) WriteLine(1);
+else
+{
+    int start = 0;
+    int gap = 1;
+    int answer = 1;
+    while (true)
+    {
+        if (n >= (6 * start + 2) && n <= (6 * (start + gap) + 1))
+        {
+            WriteLine(answer + 1);
+            return;
+        }
+        start += gap;
+        gap++;
+        answer++;
+    }
+}
+=====================================
+// 1193
+int x = int.Parse(ReadLine());
+
+int level = 1;
+int temp = 1;
+
+while (temp < x)
+{
+    level++;
+    temp += level;
+}
+int den = temp - x + 1;
+if (level % 2 == 0) WriteLine($"{level + 1 - den}/{den}");
+else WriteLine($"{den}/{level + 1 - den}");
+=====================================
+// 2869
+string[] inputRaw = ReadLine().Split(' ');
+int climbDistance = int.Parse(inputRaw[0]);
+int fallDistance = int.Parse(inputRaw[1]);
+int goalDistance = int.Parse(inputRaw[2]);
+
+goalDistance -= fallDistance;
+
+int dailyDistance = climbDistance - fallDistance;
+int days = goalDistance / dailyDistance;
+if ((goalDistance % dailyDistance) != 0) days += 1;
+WriteLine(days);
+=====================================
+*/
+#endregion
+
 #endregion
