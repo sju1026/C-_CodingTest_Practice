@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using static System.Console;
 
 namespace CodingTest
@@ -8,7 +7,6 @@ namespace CodingTest
     {
         static void Main(string[] args)
         {
-            
         }
     }
 }
@@ -1137,5 +1135,280 @@ WriteLine(days);
 =====================================
 */
 #endregion
+
+#region 약수와 배수 소수
+/*
+// 5086
+while (true)
+{
+    string[] token = ReadLine().Split();
+    int first = int.Parse(token[0]);
+    int second = int.Parse(token[1]);
+
+    if (first == 0 && second == 0) return;
+
+    if ((first % second) == 0) WriteLine("multiple");
+    else if ((second % first) == 0) WriteLine("factor");
+    else WriteLine("neither");
+}
+==================================
+// 2501
+string n_string = ReadLine();
+string[] token = n_string.Split();
+
+int n = int.Parse(token[0]);
+int k = int.Parse(token[1]);
+int a = n;
+List<int> list = new List<int>();
+
+while (a> 0)
+{
+    if (n % a == 0) list.Add(a);
+    a--;
+}
+list.Sort();
+
+if (list.Count < k) WriteLine(0);
+else WriteLine(list[k - 1]);
+==================================
+// 9506
+using System.Collections.Generic;
+using System.Linq;
+
+while (true)
+{
+    int num = int.Parse(ReadLine());
+    List<int> list = new List<int>();
+    int add_num = 0;
+    if (num == -1) break;
+    for (int i = 1; i <= Math.Sqrt(num); i++)
+    {
+        if (num % i == 0) list.Add(i);
+    }
+
+    int cnt = list.Count;
+    for (int i = 0; i < cnt; i++)
+    {
+        if (num / list[i] != num) list.Add(num / list[i]);
+    }
+    list = list.Distinct().ToList();
+    list.Sort();
+    cnt = list.Count;
+
+    for (int i = 0; i < cnt; i++)
+        add_num += list[i];
+
+    if (add_num == num)
+    {
+        Write(num + " = " + list[0]);
+        for (int i = 1; i < cnt; i++)
+            Write(" + " + list[i]);
+    }
+    else
+        Write(num + " is NOT perfect.");
+    WriteLine();
+}
+==================================
+// 1978
+int num = int.Parse(ReadLine());
+string word = ReadLine();
+string[] token = word.Split();
+int answer = num;
+for (int i = 0; i < num; i++)
+{
+    if (int.Parse(token[i]) == 1)
+    {
+        answer--;
+        continue;
+    }
+    for (int j = 2; j < int.Parse(token[i]); j++)
+    {
+        if (int.Parse(token[i]) % j == 0)
+        {
+            answer--;
+            break;
+        }
+    }
+}
+Write(answer);
+==================================
+// 2581
+static void Main(string[] args)
+{
+int n1 = int.Parse(ReadLine());
+int n2 = int.Parse(ReadLine());
+int max = 0;
+int min = 0;
+
+for (int index = n1; index <= n2; index++)
+{
+    if (IsPrime(index))
+    {
+        if (min == 0) min = index;
+        max += index;
+    }
+}
+
+if (min == 0) WriteLine(-1);
+else WriteLine(max + "\n" + min);
+}
+
+public static bool IsPrime (int num)
+{
+if (num == 1) return false;
+
+for (int i = 2; i <= num / 2; i++)
+{
+    if (num % i == 0) return false;
+}
+return true;
+}
+==================================
+// 11653
+int n = int.Parse(ReadLine());
+
+for (int i = 2; i * i <= n; i++)
+{
+    while (n % i == 0)
+    {
+        WriteLine(i);
+        n /= i;
+    }
+}
+if (n > 1) WriteLine(n);
+==================================
+*/
+#endregion
+
+#region 직각삼각형과 삼각형 단계
+/*
+// 27323
+int x = int.Parse(ReadLine());
+int y = int.Parse(ReadLine());
+
+WriteLine(x * y);
+=====================================
+// 1085
+int[] input = Array.ConvertAll(ReadLine().Split(' '), int.Parse);
+
+int x = input[0];
+int y = input[1];
+int w = input[2];
+int h = input[3];
+
+int[] NumArray = new int[] { x, y, w - x, h - y };
+int min = NumArray[0];
+
+for (int i = 1; i < NumArray.Length; i++)
+{
+    if (min > NumArray[i]) min = NumArray[i];
+}
+WriteLine(min);
+=====================================
+// 3009
+string[] s = ReadLine().Split();
+int x1 = int.Parse(s[0]);
+int y1 = int.Parse(s[1]);
+int x = 0;
+int y = 0;
+int cx = 0;
+int cy = 0;
+for (int i = 0; i < 2; i++)
+{
+    string[] s1 = ReadLine().Split();
+    int x2 = int.Parse(s1[0]);
+    int y2 = int.Parse(s1[1]);
+    if (x1 == x2) cx++;
+    else x = x2;
+    if (y1 == y2) cy++;
+    else y = y2;
+}
+Write("{0} {1}", cx == 1 ? x : x1, cy == 1 ? y : y1);
+=====================================
+// 15894
+long n = long.Parse(ReadLine());
+WriteLine(4 * n);
+=====================================
+// 9063
+int n = int.Parse(ReadLine());
+int rx = int.MinValue;
+int ry = int.MinValue;
+int lx = int.MaxValue;
+int ly = int.MaxValue;
+
+for (int i = 0; i< n; i++)
+{
+    int[] input = Array.ConvertAll(ReadLine().Split(" "), int.Parse);
+    rx = Math.Max(input[0], rx);
+    ry = Math.Max(input[1], ry);
+    lx = Math.Min(input[0], lx);
+    ly = Math.Min(input[1], ly);
+}
+WriteLine((rx - lx) * (ry - ly));
+=====================================
+// 10101
+string st = ReadLine();
+int a = int.Parse(st);
+string st1 = ReadLine();
+int b = int.Parse(st1);
+string st2 = ReadLine();
+int c = int.Parse(st2);
+int sum = a + b + c;
+if (sum == 180)
+{
+    if (a == 60 && b == 60 && c == 60) Write("Equilateral");
+    else if (a == b || b == c || a == c) Write("Isosceles");
+    else Write("Scalene");
+}
+else Write("Error");
+=====================================
+
+*/
+#endregion
+
+#region 시간복잡도
+/*
+// 24262
+WriteLine(1);
+WriteLine(0);
+============================================
+// 24263
+int n = int.Parse(ReadLine());
+WriteLine(n);
+WriteLine(1);
+============================================
+// 24264
+long.TryParse(ReadLine(), out long n);
+WriteLine("{0}\n{1}", n * n, 2);
+============================================
+// 24267
+Int64 n = Int64.Parse(ReadLine());
+Int64 count = (n - 2) * (n - 1) * n / 6;
+WriteLine($"{count}\n3");
+============================================
+// 24313
+string[] s = ReadLine().Split();
+int a1 = int.Parse(s[0]);
+int a2 = int.Parse(s[1]);
+int c = int.Parse(ReadLine());
+int n = int.Parse(ReadLine());
+
+if (a1 * n + a2 <= c * n && c >= a1) WriteLine(1);
+else WriteLine(0);
+============================================
+*/
+#endregion
+
+#endregion
+
+#region 정렬
+
+#endregion
+
+#region 약수, 배수와 소수 2
+
+#endregion
+
+#region 스택, 큐, 덱
 
 #endregion
